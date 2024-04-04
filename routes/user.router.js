@@ -36,27 +36,51 @@ require("dotenv").config();
 // });
 
 //-----------------------------------------------------------------
+// UserRouter.post("/register", async (req, res) => {
+//   try {
+//     const { username, email, password } = req.body;
+//     const existUser = await UserModel.findOne({ email });
+//     if (existUser) {
+//       return res.status(400).json({ message: "User already exists" });
+//     }
+
+//     const hash = await bcrypt.hash(password, 5);
+//     const user = new UserModel({
+//       username: username,
+//       email: email,
+//       password: hash,
+//     });
+//     await user.save();
+//     res.status(200).json({ message: "User registered successfully" });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Unable to register user" });
+//   }
+// });
+//--------------------mine----------------------------------
+
 UserRouter.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-
   try {
-    const existUser = await UserModel.findOne({ email });
-    if (existUser) {
-      return res.status(400).json({ message: "User already exists" });
+    const { username, email, password } = req.body;
+    const findUser = await UserModel.findOne({ email });
+    if (findUser) {
+      res.status(200).json({ msg: "User Already registered" });
+    } else {
+      bcrypt.hash(password, 5, (err, hash) => {
+        if (!err) {
+          const user = new UserModel({
+            username,
+            email,
+            password: hash,
+          });
+          user.save();
+          res.status(200).json({ msg: "User added successfully" });
+        } else {
+          res.status(400).json({ msg: err });
+        }
+      });
     }
-
-    const hash = await bcrypt.hash(password, 5);
-    const user = new UserModel({
-      username: username,
-      email: email,
-      password: hash,
-    });
-    await user.save();
-    res.status(200).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Unable to register user" });
-  }
+  } catch (err) {}
 });
 
 //-----------------------------------------------------------------
