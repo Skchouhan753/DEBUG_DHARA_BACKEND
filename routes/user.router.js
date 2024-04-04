@@ -14,12 +14,12 @@ UserRouter.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
   const existUser = await UserModel.findOne({ email });
-  if (existUser) return res.status(400).json({ message: "User already exists" });
+  if (existUser) return res.status(400).json({ message: "user already exists" });
 
   try {
     bcrypt.hash(password, 5, async (err, hash) => {
       if (err) {
-        res.status(200).json({ msg: "Your Password is not secure" });
+        res.status(200).json({ msg: "wrong Password" });
       } else {
         const user = new UserModel({
           username: username,
@@ -31,7 +31,7 @@ UserRouter.post("/register", async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(400).json({ msg: "Error: unable to register user" });
+    res.status(400).json({ msg: "unable to register user" });
   }
 });
 
@@ -47,17 +47,17 @@ UserRouter.post("/login", async (req, res) => {
           res
             .status(200)
             .json({
-              msg: "User succesefully login",
+              msg: "user succesefully logged-in",
               token: jwt.sign({ user }, process.env.SECRET_KEY),
             });
 
         } else {
-          res.status(200).json({ msg: "Incorrect Password" });
+          res.status(200).json({ msg: "incorrect password" });
         }
       });
     }
   } catch (error) {
-    res.status(400).json({ msg: "Login Failed" });
+    res.status(400).json({ msg: "login failed" });
   }
 });
 
