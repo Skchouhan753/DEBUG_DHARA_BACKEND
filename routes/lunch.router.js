@@ -11,7 +11,7 @@ lunchRouter.post("/create", async (req, res) => {
         await newLunch.save();
         res.status(200).json(newLunch);
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 
@@ -21,7 +21,7 @@ lunchRouter.get("/", async (req, res) => {
         res.status(200).json(lunchs);
 
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 
@@ -32,7 +32,7 @@ lunchRouter.patch("/:lunchId", async (req, res) => {
         await LunchModel.updateOne({ _id: lunchId }, { $set: body });
         res.status(200).json({ message: "updation done" });
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 
@@ -42,7 +42,7 @@ lunchRouter.delete("/:lunchId", async (req, res) => {
         await LunchModel.deleteOne({ _id: lunchId });
         res.status(200).json({ message: "deletion done" });
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 

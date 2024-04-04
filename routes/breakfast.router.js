@@ -10,7 +10,7 @@ breakfastRouter.post("/create", async (req, res) => {
         await newBreakfast.save();
         res.status(200).json({ message: "Breakfast added to DB" });
     } catch (error) {
-        res.status(400).json({ message: "Error,", error })
+        res.status(400).json({ message:  error })
     }
 });
 
@@ -19,7 +19,7 @@ breakfastRouter.get("/", async (req, res) => {
         const breakfasts = await BreakfastModel.find();
         res.status(200).json(breakfasts);
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message:  error });
     }
 });
 
@@ -31,7 +31,7 @@ breakfastRouter.patch("/:breakfastId", async (req, res) => {
         res.status(200).json({ message: "updation done" });
 
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 
@@ -42,7 +42,7 @@ breakfastRouter.delete("/:breakfastId", async (req, res) => {
         res.status(200).json({ message: "deletion done" });
 
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 

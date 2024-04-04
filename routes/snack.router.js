@@ -11,7 +11,7 @@ snackRouter.post("/create", async (req, res) => {
         await newSnack.save();
         res.status(200).json(newSnack);
     } catch (error) {
-        res.status(400).json({ message: "Error ", error })
+        res.status(400).json({ message: error })
     }
 });
 
@@ -20,7 +20,7 @@ snackRouter.get("/", async (req, res) => {
         const snacks = await SnackModel.find();
         res.status(200).json(snacks);
     } catch (error) {
-        res.status(400).json({ message: "Error ", error })
+        res.status(400).json({ message: error })
     }
 });
 
@@ -31,7 +31,7 @@ snackRouter.patch("/:snackId", async (req, res) => {
         await SnackModel.updateOne({ _id: snackId }, { $set: body });
         res.status(200).json({ message: "updation done" });
     } catch (error) {
-        res.status(400).json({ message: "Error ", error })
+        res.status(400).json({ message: error })
     }
 });
 
@@ -42,7 +42,7 @@ snackRouter.delete("/:snackId", async (req, res) => {
         res.status(200).json({ message: "deletion done" });
 
     } catch (error) {
-        res.status(400).json({ message: "Error ", error })
+        res.status(400).json({ message: error })
     }
 });
 

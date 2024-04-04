@@ -12,7 +12,7 @@ dinnerRouter.post("/create", async (req, res) => {
         res.status(200).json(newDinner);
 
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message:  error });
     }
 });
 
@@ -21,7 +21,7 @@ dinnerRouter.get("/", async (req, res) => {
         const dinners = await DinnerModel.find();
         res.status(200).json(dinners);
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message:  error });
     }
 });
 
@@ -33,7 +33,7 @@ dinnerRouter.patch("/:dinnerId", async (req, res) => {
         res.status(200).json({ message: "updation done" });
 
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 
@@ -43,7 +43,7 @@ dinnerRouter.delete("/:dinnerId", async (req, res) => {
         await DinnerModel.deleteOne({ _id: dinnerId });
         res.status(200).json({ message: "deletion done" });
     } catch (error) {
-        res.status(400).json({ message: "Error,", error });
+        res.status(400).json({ message: error });
     }
 });
 

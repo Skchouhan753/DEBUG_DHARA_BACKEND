@@ -9,7 +9,7 @@ foodsRouter.post("/create", async (req, res) => {
         await FoodModel.insertMany(data)
         res.status(200).send({ msg: "Foods saved to DB" });
     } catch (error) {
-        res.status(400).send({ msg: "Error", error })
+        res.status(400).send({ msg: error })
     }
 });
 
@@ -21,7 +21,7 @@ foodsRouter.get("/", async (req, res) => {
         res.status(200).send(foods)
 
     } catch (error) {
-        res.status(400).json({ msg: "Error", error })
+        res.status(400).json({ msg: error })
     }
 })
 

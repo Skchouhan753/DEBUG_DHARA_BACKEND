@@ -48,7 +48,7 @@ UserRouter.post("/login", async (req, res) => {
             .status(200)
             .json({
               msg: "User succesefully login",
-              Token: jwt.sign({ user }, process.env.SECRET_KEY),
+              token: jwt.sign({ user }, process.env.SECRET_KEY),
             });
 
         } else {

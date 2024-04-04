@@ -12,7 +12,7 @@ strengthRouter.post("/create", async (req, res) => {
         res.status(200).json(newStrength);
 
     } catch (error) {
-        res.status(400).json({ msg: "Error", error })
+        res.status(400).json({ msg: error })
     }
 });
 
@@ -22,7 +22,7 @@ strengthRouter.get("/", async (req, res) => {
         res.status(200).json(strength);
 
     } catch (error) {
-        res.status(400).json({ msg: "Error", error })
+        res.status(400).json({ msg: error })
     }
 });
 
@@ -34,7 +34,7 @@ strengthRouter.patch("/:strengthId", async (req, res) => {
         res.status(200).json({ message: "updation done" });
 
     } catch (error) {
-        res.status(400).json({ msg: "Error", error })
+        res.status(400).json({ msg: error })
     }
 });
 
@@ -45,7 +45,7 @@ strengthRouter.delete("/:strengthId", async (req, res) => {
         res.status(200).json({ message: "deletion done" });
 
     } catch (error) {
-        res.status(400).json({ msg: "Error", error })
+        res.status(400).json({ msg: error })
     }
 });
 
