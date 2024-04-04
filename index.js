@@ -33,14 +33,14 @@ app.use("/lunch", lunchRouter);
 app.use("/snack", snackRouter);
 app.use("/dinner", dinnerRouter);
 
-// app.get("/", auth, async (req, res) => {
-//   try {
-//     res.json({ msg: "Access granted" })
-//     console.log(req.body)
-//   } catch (error) {
-//     res.json({ msg: "Access declined" })
-//   }
-// })
+app.get("/", auth, async (req, res) => {
+  try {
+    res.json({ msg: "Access granted" })
+    console.log(req.body)
+  } catch (error) {
+    res.json({ msg: "Access declined" })
+  }
+})
 app.listen(PORT, async () => {
   try {
     await connection;
